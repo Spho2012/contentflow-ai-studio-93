@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Eye, Trash2 } from "lucide-react";
+import { Download, Eye, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -31,6 +31,15 @@ export const Route = createFileRoute("/history")({
   }),
   component: HistoryPage,
 });
+
+function downloadImage(item: HistoryItem) {
+  if (!item.imageUrl) return;
+  const a = document.createElement("a");
+  a.href = item.imageUrl;
+  a.download = `contentflow-${item.id}.png`;
+  a.click();
+  toast.success("Image downloaded");
+}
 
 function HistoryPage() {
   const { items, remove, clear } = useHistory();
