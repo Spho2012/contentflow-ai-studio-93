@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "ContentFlow AI turns one idea into social captions, blogs, emails, scripts and image prompts. Create once. Generate everywhere.",
+          "ContentFlow AI turns one idea into social captions, blogs, emails, scripts and real AI images. Create once. Generate everywhere.",
       },
       { name: "author", content: "ContentFlow AI" },
       { property: "og:title", content: "ContentFlow AI — AI Content Creation Studio" },

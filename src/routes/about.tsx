@@ -24,7 +24,8 @@ export const Route = createFileRoute("/about")({
 
 const FEATURES = [
   "AI content generation",
-  "Image prompt generation",
+  "Real AI image generation (not prompt-only)",
+  "Flexible image generation covering events, artists, careers, products and general concepts, with downloadable output",
   "Content repurposing",
   "Prompt library",
   "Prompt optimisation",
@@ -37,6 +38,8 @@ const SKILLS = [
   "Prompt engineering",
   "Prompt refinement",
   "Generative AI",
+  "Multi-modal AI integration (text + image)",
+  "Structured, template-driven prompt-to-image generation across multiple use cases",
   "Content structuring",
   "AI productivity workflows",
 ];
@@ -89,10 +92,10 @@ function AboutPage() {
         <h2 className="text-lg font-bold">How the AI works here</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           Text generation, refinement and repurposing run through a secure server-side call to a real
-          AI model — the API key never reaches the browser. The connected model produces text, so the
-          Image Creator engineers a detailed image-generation prompt instead of claiming to render an
-          image. Saved content is stored in your browser so the prototype stays fully functional
-          without an account.
+          AI model — the API key never reaches the browser. The Image Generator builds an optimised
+          prompt from your description and settings, then sends it to a real text-to-image model and
+          streams the actual image back for download. Saved content and images are stored in your
+          browser so the prototype stays fully functional without an account.
         </p>
       </section>
     </AppShell>

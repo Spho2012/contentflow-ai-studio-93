@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Eye, Trash2 } from "lucide-react";
+import { Download, Eye, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -31,6 +31,15 @@ export const Route = createFileRoute("/history")({
   }),
   component: HistoryPage,
 });
+
+function downloadImage(item: HistoryItem) {
+  if (!item.imageUrl) return;
+  const a = document.createElement("a");
+  a.href = item.imageUrl;
+  a.download = `contentflow-${item.id}.png`;
+  a.click();
+  toast.success("Image downloaded");
+}
 
 function HistoryPage() {
   const { items, remove, clear } = useHistory();
@@ -66,15 +75,32 @@ function HistoryPage() {
                     {new Date(item.createdAt).toLocaleString()}
                   </time>
                 </div>
-                <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">{item.content}</p>
-                <p className="mt-2 line-clamp-1 text-xs text-muted-foreground/80">
-                  Prompt: {item.prompt}
-                </p>
+                <div className="mt-3 flex gap-4">
+                  {item.imageUrl && (
+                    <img
+                      src={item.imageUrl}
+                      alt={item.content || "Saved AI image"}
+                      className="size-20 shrink-0 rounded-xl object-cover"
+                    />
+                  )}
+                  <div className="min-w-0">
+                    <p className="line-clamp-2 text-sm text-muted-foreground">{item.content}</p>
+                    <p className="mt-2 line-clamp-1 text-xs text-muted-foreground/80">
+                      Prompt: {item.prompt}
+                    </p>
+                  </div>
+                </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Button size="sm" variant="outline" onClick={() => setActive(item)}>
                     <Eye className="size-4" /> View
                   </Button>
-                  <CopyButton value={item.content} />
+                  {item.imageUrl ? (
+                    <Button size="sm" variant="outline" onClick={() => downloadImage(item)}>
+                      <Download className="size-4" /> Download
+                    </Button>
+                  ) : (
+                    <CopyButton value={item.content} />
+                  )}
                   <Button
                     size="sm"
                     variant="ghost"
@@ -97,17 +123,32 @@ function HistoryPage() {
           <DialogHeader>
             <DialogTitle>{active?.type}</DialogTitle>
           </DialogHeader>
-          <div className="whitespace-pre-wrap rounded-xl bg-secondary/60 p-4 text-sm leading-relaxed">
-            {active?.content}
-          </div>
+          {active?.imageUrl && (
+            <img
+              src={active.imageUrl}
+              alt={active.content || "Saved AI image"}
+              className="w-full rounded-xl"
+            />
+          )}
+          {active?.content && (
+            <div className="whitespace-pre-wrap rounded-xl bg-secondary/60 p-4 text-sm leading-relaxed">
+              {active.content}
+            </div>
+          )}
           <div className="rounded-xl border border-border p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Prompt used
             </p>
             <p className="mt-2 whitespace-pre-wrap text-xs text-muted-foreground">{active?.prompt}</p>
           </div>
-          <div className="flex gap-2">
-            <CopyButton value={active?.content ?? ""} label="Copy content" />
+          <div className="flex flex-wrap gap-2">
+            {active?.imageUrl ? (
+              <Button size="sm" onClick={() => active && downloadImage(active)}>
+                <Download className="size-4" /> Download image
+              </Button>
+            ) : (
+              <CopyButton value={active?.content ?? ""} label="Copy content" />
+            )}
             <CopyButton value={active?.prompt ?? ""} label="Copy prompt" variant="ghost" />
           </div>
         </DialogContent>

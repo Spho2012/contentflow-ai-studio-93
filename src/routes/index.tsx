@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Your AI content studio dashboard: generate text, craft image prompts, repurpose content and reuse tested prompts.",
+          "Your AI content studio dashboard: generate text, create real AI images, repurpose content and reuse tested prompts.",
       },
       { property: "og:title", content: "ContentFlow AI Dashboard" },
       {
@@ -41,9 +41,9 @@ const QUICK_ACTIONS = [
     icon: Sparkles,
   },
   {
-    to: "/image-creator",
+    to: "/image-generator",
     title: "Create Image",
-    description: "Engineer a detailed image-generation prompt.",
+    description: "Generate a real, downloadable AI image.",
     icon: ImageIcon,
   },
   {
@@ -84,7 +84,7 @@ function Dashboard() {
           AI Content Creation Studio
         </p>
         <h2 className="mt-3 max-w-2xl text-2xl font-extrabold sm:text-3xl">
-          Turn a single idea into captions, blogs, emails, scripts and image prompts.
+          Turn a single idea into captions, blogs, emails, scripts and real AI images.
         </h2>
         <p className="mt-3 max-w-2xl text-sm opacity-90">
           ContentFlow AI combines prompt engineering, prompt optimisation and content repurposing so
