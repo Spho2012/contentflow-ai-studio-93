@@ -7,6 +7,8 @@ export type HistoryItem = {
   content: string;
   prompt: string;
   kind: "generate" | "image" | "repurpose";
+  imageUrl?: string;
+  imageType?: string;
 };
 
 const KEY = "contentflow-history";
@@ -22,8 +24,21 @@ function read(): HistoryItem[] {
 }
 
 function write(items: HistoryItem[]) {
-  window.localStorage.setItem(KEY, JSON.stringify(items));
-  window.dispatchEvent(new Event("contentflow-history-change"));
+  let list = items;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    try {
+      window.localStorage.setItem(KEY, JSON.stringify(list));
+      window.dispatchEvent(new Event("contentflow-history-change"));
+      return;
+    } catch {
+      // Storage is full — drop the oldest image-heavy entries and retry.
+      const lastImage = [...list].reverse().find((i) => i.imageUrl);
+      list = lastImage
+        ? list.map((i) => (i.id === lastImage.id ? { ...i, imageUrl: undefined } : i))
+        : list.slice(0, Math.max(1, list.length - 10));
+    }
+  }
+  throw new Error("Not enough browser storage to save this item");
 }
 
 export function saveHistory(item: Omit<HistoryItem, "id" | "createdAt">) {
