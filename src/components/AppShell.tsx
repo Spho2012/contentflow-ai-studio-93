@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/generate", label: "Generate", icon: Sparkles },
-  { to: "/image-creator", label: "Image Creator", icon: ImageIcon },
+  { to: "/image-generator", label: "Image Generator", icon: ImageIcon },
   { to: "/repurpose", label: "Repurpose", icon: Repeat2 },
   { to: "/prompt-library", label: "Prompt Library", icon: Library },
   { to: "/history", label: "History", icon: HistoryIcon },

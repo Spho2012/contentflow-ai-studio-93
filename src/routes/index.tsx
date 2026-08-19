@@ -41,9 +41,9 @@ const QUICK_ACTIONS = [
     icon: Sparkles,
   },
   {
-    to: "/image-creator",
+    to: "/image-generator",
     title: "Create Image",
-    description: "Engineer a detailed image-generation prompt.",
+    description: "Generate a real, downloadable AI image.",
     icon: ImageIcon,
   },
   {

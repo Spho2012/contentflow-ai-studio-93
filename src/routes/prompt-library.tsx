@@ -92,7 +92,7 @@ function PromptLibraryPage() {
                 onClick={() => {
                   const target =
                     p.category === "Image Generation"
-                      ? "/image-creator"
+                      ? "/image-generator"
                       : p.category === "Repurposing"
                         ? "/repurpose"
                         : "/generate";

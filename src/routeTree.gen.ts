@@ -13,7 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as GenerateRouteImport } from './routes/generate'
 import { Route as HistoryRouteImport } from './routes/history'
-import { Route as ImageCreatorRouteImport } from './routes/image-creator'
+import { Route as ImageGeneratorRouteImport } from './routes/image-generator'
 import { Route as PromptLibraryRouteImport } from './routes/prompt-library'
 import { Route as RepurposeRouteImport } from './routes/repurpose'
 import { Route as ApiGenerateImageRouteImport } from './routes/api/generate-image'
@@ -38,9 +38,9 @@ const HistoryRoute = HistoryRouteImport.update({
   path: '/history',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ImageCreatorRoute = ImageCreatorRouteImport.update({
-  id: '/image-creator',
-  path: '/image-creator',
+const ImageGeneratorRoute = ImageGeneratorRouteImport.update({
+  id: '/image-generator',
+  path: '/image-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PromptLibraryRoute = PromptLibraryRouteImport.update({
@@ -64,7 +64,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/generate': typeof GenerateRoute
   '/history': typeof HistoryRoute
-  '/image-creator': typeof ImageCreatorRoute
+  '/image-generator': typeof ImageGeneratorRoute
   '/prompt-library': typeof PromptLibraryRoute
   '/repurpose': typeof RepurposeRoute
   '/api/generate-image': typeof ApiGenerateImageRoute
@@ -74,7 +74,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/generate': typeof GenerateRoute
   '/history': typeof HistoryRoute
-  '/image-creator': typeof ImageCreatorRoute
+  '/image-generator': typeof ImageGeneratorRoute
   '/prompt-library': typeof PromptLibraryRoute
   '/repurpose': typeof RepurposeRoute
   '/api/generate-image': typeof ApiGenerateImageRoute
@@ -85,7 +85,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/generate': typeof GenerateRoute
   '/history': typeof HistoryRoute
-  '/image-creator': typeof ImageCreatorRoute
+  '/image-generator': typeof ImageGeneratorRoute
   '/prompt-library': typeof PromptLibraryRoute
   '/repurpose': typeof RepurposeRoute
   '/api/generate-image': typeof ApiGenerateImageRoute
@@ -97,7 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/generate'
     | '/history'
-    | '/image-creator'
+    | '/image-generator'
     | '/prompt-library'
     | '/repurpose'
     | '/api/generate-image'
@@ -107,7 +107,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/generate'
     | '/history'
-    | '/image-creator'
+    | '/image-generator'
     | '/prompt-library'
     | '/repurpose'
     | '/api/generate-image'
@@ -117,7 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/generate'
     | '/history'
-    | '/image-creator'
+    | '/image-generator'
     | '/prompt-library'
     | '/repurpose'
     | '/api/generate-image'
@@ -128,7 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   GenerateRoute: typeof GenerateRoute
   HistoryRoute: typeof HistoryRoute
-  ImageCreatorRoute: typeof ImageCreatorRoute
+  ImageGeneratorRoute: typeof ImageGeneratorRoute
   PromptLibraryRoute: typeof PromptLibraryRoute
   RepurposeRoute: typeof RepurposeRoute
   ApiGenerateImageRoute: typeof ApiGenerateImageRoute
@@ -164,11 +164,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/image-creator': {
-      id: '/image-creator'
-      path: '/image-creator'
-      fullPath: '/image-creator'
-      preLoaderRoute: typeof ImageCreatorRouteImport
+    '/image-generator': {
+      id: '/image-generator'
+      path: '/image-generator'
+      fullPath: '/image-generator'
+      preLoaderRoute: typeof ImageGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/prompt-library': {
@@ -200,7 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   GenerateRoute: GenerateRoute,
   HistoryRoute: HistoryRoute,
-  ImageCreatorRoute: ImageCreatorRoute,
+  ImageGeneratorRoute: ImageGeneratorRoute,
   PromptLibraryRoute: PromptLibraryRoute,
   RepurposeRoute: RepurposeRoute,
   ApiGenerateImageRoute: ApiGenerateImageRoute,
