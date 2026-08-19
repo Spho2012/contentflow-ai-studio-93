@@ -66,15 +66,32 @@ function HistoryPage() {
                     {new Date(item.createdAt).toLocaleString()}
                   </time>
                 </div>
-                <p className="mt-3 line-clamp-2 text-sm text-muted-foreground">{item.content}</p>
-                <p className="mt-2 line-clamp-1 text-xs text-muted-foreground/80">
-                  Prompt: {item.prompt}
-                </p>
+                <div className="mt-3 flex gap-4">
+                  {item.imageUrl && (
+                    <img
+                      src={item.imageUrl}
+                      alt={item.content || "Saved AI image"}
+                      className="size-20 shrink-0 rounded-xl object-cover"
+                    />
+                  )}
+                  <div className="min-w-0">
+                    <p className="line-clamp-2 text-sm text-muted-foreground">{item.content}</p>
+                    <p className="mt-2 line-clamp-1 text-xs text-muted-foreground/80">
+                      Prompt: {item.prompt}
+                    </p>
+                  </div>
+                </div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Button size="sm" variant="outline" onClick={() => setActive(item)}>
                     <Eye className="size-4" /> View
                   </Button>
-                  <CopyButton value={item.content} />
+                  {item.imageUrl ? (
+                    <Button size="sm" variant="outline" onClick={() => downloadImage(item)}>
+                      <Download className="size-4" /> Download
+                    </Button>
+                  ) : (
+                    <CopyButton value={item.content} />
+                  )}
                   <Button
                     size="sm"
                     variant="ghost"
