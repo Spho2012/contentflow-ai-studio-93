@@ -61,9 +61,9 @@ export const PROMPT_LIBRARY: LibraryPrompt[] = [
     id: "image-prompt",
     name: "Image Generation",
     category: "Image Generation",
-    purpose: "Engineer detailed prompts for image models.",
-    text: "You are an expert AI image prompt engineer. Create a detailed image-generation prompt for {topic}. The desired style is {style}, the mood is {mood}, and the aspect ratio is {aspect_ratio}. Include details about composition, lighting, subject, environment and visual style.",
-    variables: ["topic", "style", "mood", "aspect_ratio"],
+    purpose: "Engineer detailed prompts sent straight to a real image model.",
+    text: "You are an expert AI image prompt engineer. Create a detailed image-generation prompt for {topic}, of type {image_type} (e.g. event/poster, artist/performer, career/profession, product, or general). The desired style is {style}, the mood is {mood}, and the aspect ratio is {aspect_ratio}. Include details about composition, lighting, subject, environment, and visual style, and include typography guidance only if the image type is a poster or graphic with text. This prompt will be sent directly to an image-generation model to produce a real image.",
+    variables: ["topic", "image_type", "style", "mood", "aspect_ratio"],
   },
   {
     id: "improve-content",
