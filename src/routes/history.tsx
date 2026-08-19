@@ -123,17 +123,32 @@ function HistoryPage() {
           <DialogHeader>
             <DialogTitle>{active?.type}</DialogTitle>
           </DialogHeader>
-          <div className="whitespace-pre-wrap rounded-xl bg-secondary/60 p-4 text-sm leading-relaxed">
-            {active?.content}
-          </div>
+          {active?.imageUrl && (
+            <img
+              src={active.imageUrl}
+              alt={active.content || "Saved AI image"}
+              className="w-full rounded-xl"
+            />
+          )}
+          {active?.content && (
+            <div className="whitespace-pre-wrap rounded-xl bg-secondary/60 p-4 text-sm leading-relaxed">
+              {active.content}
+            </div>
+          )}
           <div className="rounded-xl border border-border p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               Prompt used
             </p>
             <p className="mt-2 whitespace-pre-wrap text-xs text-muted-foreground">{active?.prompt}</p>
           </div>
-          <div className="flex gap-2">
-            <CopyButton value={active?.content ?? ""} label="Copy content" />
+          <div className="flex flex-wrap gap-2">
+            {active?.imageUrl ? (
+              <Button size="sm" onClick={() => active && downloadImage(active)}>
+                <Download className="size-4" /> Download image
+              </Button>
+            ) : (
+              <CopyButton value={active?.content ?? ""} label="Copy content" />
+            )}
             <CopyButton value={active?.prompt ?? ""} label="Copy prompt" variant="ghost" />
           </div>
         </DialogContent>
