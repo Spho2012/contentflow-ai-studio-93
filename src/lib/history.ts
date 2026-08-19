@@ -34,7 +34,11 @@ function write(items: HistoryItem[]) {
       // Storage is full — drop the oldest image-heavy entries and retry.
       const lastImage = [...list].reverse().find((i) => i.imageUrl);
       list = lastImage
-        ? list.map((i) => (i.id === lastImage.id ? { ...i, imageUrl: undefined } : i))
+        ? list.map((i) => {
+            if (i.id !== lastImage.id) return i;
+            const { imageUrl: _drop, ...rest } = i;
+            return rest;
+          })
         : list.slice(0, Math.max(1, list.length - 10));
     }
   }
