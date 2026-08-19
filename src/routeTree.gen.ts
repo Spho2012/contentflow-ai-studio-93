@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as GenerateRouteImport } from './routes/generate'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as ImageCreatorRouteImport } from './routes/image-creator'
+import { Route as PromptLibraryRouteImport } from './routes/prompt-library'
+import { Route as RepurposeRouteImport } from './routes/repurpose'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GenerateRoute = GenerateRouteImport.update({
+  id: '/generate',
+  path: '/generate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImageCreatorRoute = ImageCreatorRouteImport.update({
+  id: '/image-creator',
+  path: '/image-creator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromptLibraryRoute = PromptLibraryRouteImport.update({
+  id: '/prompt-library',
+  path: '/prompt-library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RepurposeRoute = RepurposeRouteImport.update({
+  id: '/repurpose',
+  path: '/repurpose',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/generate': typeof GenerateRoute
+  '/history': typeof HistoryRoute
+  '/image-creator': typeof ImageCreatorRoute
+  '/prompt-library': typeof PromptLibraryRoute
+  '/repurpose': typeof RepurposeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/generate': typeof GenerateRoute
+  '/history': typeof HistoryRoute
+  '/image-creator': typeof ImageCreatorRoute
+  '/prompt-library': typeof PromptLibraryRoute
+  '/repurpose': typeof RepurposeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/generate': typeof GenerateRoute
+  '/history': typeof HistoryRoute
+  '/image-creator': typeof ImageCreatorRoute
+  '/prompt-library': typeof PromptLibraryRoute
+  '/repurpose': typeof RepurposeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/generate'
+    | '/history'
+    | '/image-creator'
+    | '/prompt-library'
+    | '/repurpose'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/generate'
+    | '/history'
+    | '/image-creator'
+    | '/prompt-library'
+    | '/repurpose'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/generate'
+    | '/history'
+    | '/image-creator'
+    | '/prompt-library'
+    | '/repurpose'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  GenerateRoute: typeof GenerateRoute
+  HistoryRoute: typeof HistoryRoute
+  ImageCreatorRoute: typeof ImageCreatorRoute
+  PromptLibraryRoute: typeof PromptLibraryRoute
+  RepurposeRoute: typeof RepurposeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/generate': {
+      id: '/generate'
+      path: '/generate'
+      fullPath: '/generate'
+      preLoaderRoute: typeof GenerateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/image-creator': {
+      id: '/image-creator'
+      path: '/image-creator'
+      fullPath: '/image-creator'
+      preLoaderRoute: typeof ImageCreatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prompt-library': {
+      id: '/prompt-library'
+      path: '/prompt-library'
+      fullPath: '/prompt-library'
+      preLoaderRoute: typeof PromptLibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/repurpose': {
+      id: '/repurpose'
+      path: '/repurpose'
+      fullPath: '/repurpose'
+      preLoaderRoute: typeof RepurposeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  GenerateRoute: GenerateRoute,
+  HistoryRoute: HistoryRoute,
+  ImageCreatorRoute: ImageCreatorRoute,
+  PromptLibraryRoute: PromptLibraryRoute,
+  RepurposeRoute: RepurposeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
